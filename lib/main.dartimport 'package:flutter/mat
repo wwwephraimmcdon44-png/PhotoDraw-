@@ -1,0 +1,134 @@
+lib/main.dartimport 'package:flutter/material.dart';
+
+void main() {
+      runApp(const PhotoDrawApp());
+}
+
+class PhotoDrawApp extends StatelessWidget {
+      const PhotoDrawApp({super.key});
+
+        @override
+          Widget build(BuildContext context) {
+                return MaterialApp(
+                          title: 'PhotoDraw',
+                                debugShowCheckedModeBanner: false,
+                                      theme: ThemeData.dark().copyWith(
+                                                scaffoldBackgroundColor: Colors.black,
+                                                        primaryColor: Colors.blueAccent,
+                                      ),
+                                            home: const SplashScreen(),
+                );
+          }
+}
+
+class SplashScreen extends StatefulWidget {
+      const SplashScreen({super.key});
+
+        @override
+          State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+      @override
+        void initState() {
+                super.initState();
+                    // Wait 3 seconds, then go to Home Screen
+                        Future.delayed(const Duration(seconds: 3), () {
+                                  Navigator.pushReplacement(
+                                            context,
+                                                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                                  );
+                        });
+        }
+
+          @override
+            Widget build(BuildContext context) {
+                    return Scaffold(
+                              body: Center(
+                                        child: Column(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                                children: const [
+                                                                                Icon(Icons.brush, size: 80, color: Colors.blueAccent),
+                                                                                            SizedBox(height: 20),
+                                                                                                        Text(
+                                                                                                                          'PhotoDraw',
+                                                                                                                                        style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),
+                                                                                                        ),
+                                                                                                                    SizedBox(height: 20),
+                                                                                                                                Text(
+                                                                                                                                                  'Developed by Ephraim McDon',
+                                                                                                                                                                style: TextStyle(fontSize: 16, color: Colors.grey),
+                                                                                                                                ),
+                                                                ],
+                                        ),
+                              ),
+                    );
+            }
+}
+
+class HomeScreen extends StatelessWidget {
+      const HomeScreen({super.key});
+
+        @override
+          Widget build(BuildContext context) {
+                return Scaffold(
+                          appBar: AppBar(
+                                    title: const Text('PhotoDraw Home'),
+                          ),
+                                body: Center(
+                                            child: Column(
+                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                                    children: [
+                                                                                    ElevatedButton.icon(
+                                                                                                      onPressed: () {}, 
+                                                                                                                    icon: const Icon(Icons.photo_library), 
+                                                                                                                                  label: const Text('Start New Edit'),
+                                                                                    ),
+                                                                                                const SizedBox(height: 20),
+                                                                                                            ElevatedButton.icon(
+                                                                                                                              onPressed: () {
+                                                                                                                                                Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutScreen()));
+                                                                                                                              }, 
+                                                                                                                                            icon: const Icon(Icons.info), 
+                                                                                                                                                          label: const Text('About App'),
+                                                                                                            ),
+                                                                    ],
+                                            ),
+                                ),
+                );
+          }
+}
+
+class AboutScreen extends StatelessWidget {
+      const AboutScreen({super.key});
+
+        @override
+          Widget build(BuildContext context) {
+                return Scaffold(
+                          appBar: AppBar(title: const Text('About PhotoDraw')),
+                                body: const Center(
+                                            child: Padding(
+                                                          padding: EdgeInsets.all(20.0),
+                                                                    child: Column(
+                                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                                                children: [
+                                                                                                                  Icon(Icons.brush, size: 60, color: Colors.blueAccent),
+                                                                                                                                SizedBox(height: 20),
+                                                                                                                                              Text('PhotoDraw', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                                                                                                                                                            SizedBox(height: 20),
+                                                                                                                                                                          Text('Built & Developed by Ephraim McDon', style: TextStyle(fontSize: 18, color: Colors.grey)),
+                                                                                                                                                                                        SizedBox(height: 10),
+                                                                                                                                                                                                      Text('Version 1.0.0', style: TextStyle(fontSize: 14, color: Colors.grey)),
+                                                                                                ],
+                                                                    ),
+                                            ),
+                                ),
+                );
+          }
+}
+                                                                ]
+                        }
+                                      )
+                )
+          }
+}
